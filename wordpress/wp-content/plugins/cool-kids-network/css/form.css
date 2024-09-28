@@ -1,0 +1,28 @@
+/* CSS rules for forms */
+
+.ckn_loginform, .ckn_signupform {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ #ckn_button {
+    background-color: #0073aa;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 15px 15px 15px 15px;
+    font-size: 14px;
+}
+
+#ckn_sign_up_submit {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+    font-size: 14px;
+}
+
+.ckn_signupform input {
+    margin-bottom: 10px;
+}
