@@ -104,7 +104,7 @@ class CoolKidsNetwork
     /**
      * Handle the "Sign Up" form submission.
      * Checks if the email is already registered, creates a new user, and assigns a role.
-     * If an error occurs, a message is displayed.
+     * If an error occurs, a message is displayed, else character's data are generated using randomuser.me.
      *
      * @return void
      */
@@ -129,6 +129,20 @@ class CoolKidsNetwork
                     // Update user role to "Cool Kid"
                     wp_update_user(array('ID' => $user_id, 'role' => 'cool_kid'));
 
+                    // Generate character data using the RandomUser API
+                    $character_data = $this->generate_random_character();
+
+                    if ($character_data) {
+                        // Save character data in user meta
+                        update_user_meta($user_id, 'first_name', $character_data['first_name']);
+                        update_user_meta($user_id, 'last_name', $character_data['last_name']);
+                        update_user_meta($user_id, 'country', $character_data['country']);
+                    } else {
+                        // Display an error if data parsing fails
+                        echo '<p style="color: red;">There was an error creating your character. Please try again.</p>';
+                        return;
+                    }
+
                     // Send mail to user with pwd
                     wp_mail($email, 'Welcome to Cool Kids Network', 'Your account has been created. Your password is: ' . $password);
 
@@ -141,6 +155,34 @@ class CoolKidsNetwork
                 }
             }
         }
+    }
+
+    /**
+     * Generate random character data using the RandomUser.me API.
+     *
+     * @return array|false Returns an array of character data or false if API call fails.
+     */
+    public function generate_random_character(): bool|array
+    {
+        $response = wp_remote_get('https://randomuser.me/api/');
+
+        if (is_wp_error($response)) {
+            return false; // Return false if the API request fails
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+
+        if (!empty($data['results'][0])) {
+            $character = $data['results'][0];
+            return array(
+                'first_name' => ucfirst($character['name']['first']),
+                'last_name' => ucfirst($character['name']['last']),
+                'country' => $character['location']['country'],
+            );
+        }
+
+        return false; // Return false if data parsing fails
     }
 }
 
