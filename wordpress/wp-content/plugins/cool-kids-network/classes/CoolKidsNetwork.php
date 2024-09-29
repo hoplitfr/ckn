@@ -9,12 +9,24 @@ class CoolKidsNetwork
 
         register_deactivation_hook(COOL_KIDS_PLUGIN_PATH . 'index.php', array($this, 'deactivate_plugin'));
 
+        $this->load_dependencies();
+
         add_action('init', array($this, 'register_shortcode'));
 
         add_action('init', array($this, 'handle_signup_form_submission'));
 
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
 
+    }
+
+    /**
+     * Loads dependencies.
+     *
+     * @return void
+     */
+    public function load_dependencies(): void
+    {
+        require_once COOL_KIDS_PLUGIN_PATH . 'classes/CKN_UserDisplay.php';
     }
 
     /**
@@ -74,7 +86,7 @@ class CoolKidsNetwork
     {
 
         if (is_user_logged_in()) {
-            return '<p>You are already logged in.</p>';
+            return CKN_User_Display::render_user_info_table();
         }
 
         ob_start();
