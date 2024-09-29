@@ -120,7 +120,8 @@ class CoolKidsNetwork
                 return;
             } else {
                 // Random pwd generator
-                $password = wp_generate_password();
+                // $password = wp_generate_password();
+                $password = 'test';
 
                 // Create a new user with "Cool Kid" role
                 $user_id = wp_create_user($email, $password, $email);
