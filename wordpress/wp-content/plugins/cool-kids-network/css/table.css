@@ -1,0 +1,10 @@
+/* CSS rules for tables */
+
+.cool_kid_table {
+    border: solid 1px #000;
+    padding: 3px;
+}
+
+.cool_kid_table td {
+    border-bottom: solid 1px #000;
+}
