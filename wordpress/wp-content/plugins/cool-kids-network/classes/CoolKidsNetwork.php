@@ -79,7 +79,7 @@ class CoolKidsNetwork
     /**
      * Render the sign-in and sign-up forms for the shortcode.
      * Displays a login button for existing users and a sign-up form for new users.
-     * If the user is logged in, a message is shown instead.
+     * If the user is logged in, the user interface is displayed.
      *
      * @return string The HTML output of the forms.
      */
