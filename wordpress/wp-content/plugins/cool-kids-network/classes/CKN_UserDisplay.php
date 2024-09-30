@@ -18,7 +18,7 @@ class CKN_User_Display
 
         // Check if the user has the role 'Cool Kid'
         if (in_array('cool_kid', (array) $current_user->roles)) {
-            return $this->render_user_info_table();
+            return self::render_user_info_table($current_user);
         } else {
             // Return nothing if the user is not a 'Cool Kid'
             return '<p>You are already logged in, but no data is available for your role.</p>';

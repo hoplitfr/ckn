@@ -87,7 +87,7 @@ class CoolKidsNetwork
     {
 
         if (is_user_logged_in()) {
-            return CKN_User_Display::render_user_info_table();
+            return CKN_User_Display::user_interface();
         }
 
         ob_start();
