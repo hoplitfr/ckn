@@ -61,6 +61,7 @@ class CoolKidsNetwork
      */
     public function enqueue_styles(): void
     {
+        wp_enqueue_style('coolkids-main-style', COOL_KIDS_PLUGIN_URL . 'css/main.css');
         wp_enqueue_style('coolkids-form-style', COOL_KIDS_PLUGIN_URL . 'css/form.css');
         wp_enqueue_style('coolkids-table-style', COOL_KIDS_PLUGIN_URL . 'css/table.css');
     }
