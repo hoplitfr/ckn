@@ -12,3 +12,9 @@
 
 * Once the user has logged in (defaut password is "test" for every account you create), the plugin checks his role to determine what information should be displayed. If the role is “Cool Kid”, then only his character's information will be displayed.
 * For this part, I've chosen to create a new class dedicated to the user interface, in the interests of rationalization.
+
+## User Story 3 & 4
+
+* Once the user has logged in, two additional roles are checked (Cooler and Coolest) to determine the level of information to which the user has access.
+* The method is the same for both roles, but incorporates a boolean to determine whether or not the user has access to the users' e-mail addresses.
+* It also exclude from the users lists every account that are not "Cool Kid, "Cooler Kid" or "Coolest Kid" in order to prevent the display of their infos.
