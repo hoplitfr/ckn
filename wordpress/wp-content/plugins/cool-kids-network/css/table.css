@@ -8,3 +8,13 @@
 .cool_kid_table td {
     border-bottom: solid 1px #000;
 }
+
+.cool_kid_userlist {
+    border: solid 1px #000;
+    padding: 3px;
+}
+
+.cool_kid_userlist td {
+    border-bottom: solid 1px #000;
+    min-width: 150px;
+}
