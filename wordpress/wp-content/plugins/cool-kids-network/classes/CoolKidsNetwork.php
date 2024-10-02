@@ -27,6 +27,7 @@ class CoolKidsNetwork
     public function load_dependencies(): void
     {
         require_once COOL_KIDS_PLUGIN_PATH . 'classes/CKN_UserDisplay.php';
+        require_once COOL_KIDS_PLUGIN_PATH . 'classes/CKN_Api.php';
     }
 
     /**
