@@ -77,7 +77,17 @@ class CKN_User_Display
         // Get all users
         $users = get_users($args);
 
+        // Get search query if it's been submitted
+        $search_query = isset($_POST['user_search']) ? sanitize_text_field($_POST['user_search']) : '';
+
         $output = '<h2>Users List</h2>';
+
+        $output .= '<form method="post">';
+        $output .= '<label for="user_search">Search Users:</label><br />';
+        $output .= '<input type="text" id="user_search" name="user_search" value="' . esc_attr($search_query) . '"><br />';
+        $output .= '<input type="submit" value="Search">';
+        $output .= '</form>';
+
         $output .= '<table class="cool_kid_userlist">';
         $output .= '<tr><th>First Name</th><th>Last Name</th><th>Country</th>';
         if ($show_email_and_role) {
@@ -92,6 +102,29 @@ class CKN_User_Display
             $country = get_user_meta($user->ID, 'country', true);
             $role = implode(', ', $user->roles);
             $email = $user->user_email;
+
+            // If there is a search query, only show users that match the search criteria (in first name, last name, or country)
+            if ($search_query) {
+                $search_fields = [$first_name, $last_name, $country];
+
+                // Include email in search fields if the user can see email and role
+                if ($show_email_and_role) {
+                    $search_fields[] = $email;
+                }
+
+                // Check if the search query matches any of the fields
+                $match_found = false;
+                foreach ($search_fields as $field) {
+                    if (stripos($field, $search_query) !== false) {
+                        $match_found = true;
+                        break;
+                    }
+                }
+
+                if (!$match_found) {
+                    continue; // Skip users who don't match the search query
+                }
+            }
 
             $output .= '<tr>';
             $output .= '<td>' . esc_html($first_name) . '</td>';
