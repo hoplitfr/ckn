@@ -3,6 +3,7 @@ services:
   db:
     image: mysql:latest
     volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./sql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root_password
