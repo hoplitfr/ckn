@@ -1,18 +1,23 @@
 # Cool Kids Network Assesment
 
+[Explanation.md](https://github.com/hoplitfr/ckn/blob/main/Explanation.md)
+
 ## Setup
 
 Clone the rep:
+
 ```
 git clone https://github.com/hoplitfr/ckn.git
 ```
 
 Launch docker:
+
 ```
 docker compose up -d
 ```
 
 Address (check with `docker ps` if needed):
+
 ```
 0.0.0.0:8000
 ```
@@ -20,11 +25,13 @@ Address (check with `docker ps` if needed):
 ## Accounts
 
 Login for admin:
+
 ```
 admin/password
 ```
 
 3 accounts already exist in the database, all with the password `test`:
+
 ```
 test@test.com
 test2@test.com
