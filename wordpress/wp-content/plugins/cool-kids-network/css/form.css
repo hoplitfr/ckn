@@ -1,5 +1,12 @@
 /* CSS rules for forms */
 
+.ckn_forms {
+    background-color: #0000002f;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px 15px 15px 15px;
+}
+
 .ckn_loginform, .ckn_signupform {
     margin-bottom: 20px;
     text-align: center;
@@ -25,4 +32,5 @@
 
 .ckn_signupform input {
     margin-bottom: 10px;
+    line-height: 2;
 }
