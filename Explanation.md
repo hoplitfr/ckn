@@ -37,28 +37,23 @@
   * If the user is not found (neither by email nor by first name/name), a message with status code 404 is returned.
   * If an invalid role is supplied, a message with code 400 is returned.
 
-## API Requests Samples
+## Other feature ideas
 
-### Update user role to coolest_kid using email
+### Plugin administration interface
 
-```
-curl -X POST http://0.0.0.0:8000/wp-json/coolkids/v1/update-role/
--H "Content-Type: application/json"
--d '{
-"api_key": "123456789",
-"email": "test3@test.com",
-"role": "coolest_kid"
-}'
-```
+* Control panel in admin: Create a user interface in the WordPress dashboard where admins can configure plugin settings (API key generation and storage, authorized role management, logs, etc.).
+* Statistics and reports: Display statistics on API usage, such as the number of requests per day, the number of successful role changes, or frequent errors (users not found, invalid roles).
+* To do this, I would choose to create two additional tables.
+  * Firstly, to store administration information: Active API keys, roles and permissions of admins.
+  * Secondly, to store statistics and logs. As data can grow rapidly, we'll store in the first table the maximum duration/size of data stored in the second.
 
-### Update user role to cooler_kid using first name and last name
-```
-curl -X POST http://0.0.0.0:8000/wp-json/coolkids/v1/update-role/
--H "Content-Type: application/json"
--d '{
-"api_key": "123456789",
-"first_name": "Débora",
-"last_name": "Mireles",
-"role": "cooler_kid"
-}'
-```
+### API for user recovery
+
+* User retrieval: Currently, the API only updates users. I could add REST routes to retrieve information about users based on their role or other metadata, in order to get an overview.
+* User export: Add functionality to export users matching certain criteria as CSV or JSON via a dedicated API.
+
+## Personal feedback
+
+* I had a lot of fun doing this test, and it also allowed me to get my hands on things I'm not used to, such as the REST API.
+* I also had to make choices that I rarely have to make in my current position, as I'm used to working a lot with legacy code, and I generally have to do with what already exists.
+* I'm in favor of working in the simplest possible way: there's no need to redevelop features already natively managed by Wordpress. That's why I didn't create any additional tables for this plugin. The only information that wasn't natively provided by Wordpress was the country of each user. Rather than create a table just for this information, I preferred to use the usermeta table.
